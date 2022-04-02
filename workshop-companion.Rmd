@@ -1,0 +1,50 @@
+---
+title: "Workshop Companion"
+author: "Stepfanie M Aguillon"
+date: "4/11/2022"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library(knitr)
+```
+
+## Introduction
+
+The workshop is primarily focused on the **design principles** for making figures and not really about **the code** that's necessary to create the figures themselves. But, of course, that is often the basis of what we do! Creating new code and remixing old code is how we get to the published figures! So even though the workshop itself is not about coding, I've compiled this companion document to demonstrate how to do some of the things we've discussed in R.
+
+
+
+## Load packages
+
+To start, load all of the required packages. 
+
+```{r message=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+data(package="palmerpenguins")
+```
+
+`ggplot2` is a package within the `tidyverse` that is used to make figures, but all of the packages are really useful so we'll load the entire `tidyverse`.
+
+`palmerpenguins` contains an example dataset that we'll be working with. (This is to avoid the commonly used `iris` dataset, which was published in the Annals of Eugenics!) More details on the `palmerpenguins` package can be found here <https://allisonhorst.github.io/palmerpenguins/>
+
+
+
+## About the dataset
+
+The `penguins` dataset contains data for `r nrow(penguins)` penguins from `r nlevels(penguins$species)` different species collected on `r nlevels(penguins$island)` islands. There are `r ncol(penguins)` different variables for each individual row. Let's look at the first few rows:
+
+```{r}
+# throughout this document, the only purpose of the function `kable` is to provide nice visuals of the tables
+kable(head(penguins))
+```
+
+Penguin species included in the dataset = `r levels(penguins$species)`
+
+Islands included in the dataset = `r levels(penguins$island)`
+
