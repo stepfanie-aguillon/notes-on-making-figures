@@ -57,3 +57,58 @@ kable(head(penguins))
 Penguin species included in the dataset = Adelie, Chinstrap, Gentoo
 
 Islands included in the dataset = Biscoe, Dream, Torgersen
+
+## Clarity
+
+### Symbol styles
+
+Here are some examples for good point shapes to use in your figures. For
+one category data, the best option is to use an open circle. I often use
+`shape=21` in combination with a fill color and modifications of
+`alpha`:
+
+``` r
+ggplot(data=penguins, aes(x=flipper_length_mm, y=body_mass_g)) + 
+  geom_point(aes(fill=species), shape=21, alpha=0.5) +
+  theme_bw()
+```
+
+![](workshop-companion_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+If you need multiple shapes, be sure to choose options with strong
+visual boundaries. For example, if you start with `21` (an open circle),
+you could then use `3` (a cross) and `24` (an open triangle) to create
+strong boundaries. You use the `scale_shape_manul()` option in `ggplot2`
+to select multiple shapes:
+
+``` r
+ggplot(data=penguins, aes(x=flipper_length_mm, y=body_mass_g)) + 
+  geom_point(aes(shape=species, fill=species), alpha=0.5) +
+  scale_shape_manual(values=c(21,3,24)) +
+  theme_bw()
+```
+
+![](workshop-companion_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+A full list of point shapes are available here
+<http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r>.
+
+### Picking the right type of figure
+
+Picking different types of figures in `ggplot2` is really easy\! Figure
+type is determined by the `geom` that you include in your code, and
+`geoms` are “stackable.” In the previous examples we used `geom_point`
+to create scatterplots with points. This is generally a really good
+starting place\!
+
+Some other good options that are very **accurate** and **efficient** and
+frequently used are `geom_line` and `geom_boxplot` or `geom_violin`.
+Here’s an example using `geom_boxplot`:
+
+``` r
+ggplot(data=penguins, aes(x=species, y=body_mass_g)) + 
+  geom_boxplot(aes(fill=species)) +
+  theme_bw()
+```
+
+![](workshop-companion_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
